@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MediShield healthcare management system" />
+  <title>MediShield | Healthcare Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="roles.css" />
+  <link rel="stylesheet" href="signin.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="MediShield home"><span class="brand-mark">✚</span><span>Medi<span>Shield</span></span></a>
+      <p class="sidebar-label">MAIN MENU</p>
+      <nav class="navigation">
+        <button class="nav-link active" data-view="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-link" data-view="patients"><span>♙</span> Patients</button>
+        <button class="nav-link" data-view="appointments"><span>◷</span> Appointments</button>
+        <button class="nav-link" data-view="records" data-role-access="records"><span>▤</span> Medical Records</button>
+        <button class="nav-link" data-view="security" data-role-access="security"><span>♜</span> Security Centre</button>
+      </nav>
+      <div class="security-mini"><span class="pulse-dot"></span><div><b>System protected</b><small>Security checks active</small></div></div>
+      <div class="profile"><div class="avatar" id="profileInitials">AD</div><div><b id="profileName">Administrator</b><small id="profileDescription">Full system access</small></div><button id="logoutButton" title="Sign out">↪</button></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow" id="pageEyebrow">HEALTHCARE OVERVIEW</p><h1 id="pageTitle">Good morning, Admin</h1></div>
+        <div class="top-actions"><span class="role-pill" id="rolePill">Administrator</span><button class="icon-button" id="notifyButton" aria-label="Notifications">♧<i></i></button><div class="top-avatar" id="topInitials">AD</div></div>
+      </header>
+
+      <section class="view active" id="dashboard">
+        <div class="hero-card"><div><span class="hero-tag">◈ TODAY AT A GLANCE</span><h2>Care starts with clarity.</h2><p id="heroCopy">Track patients, appointments and records in one calm workspace.</p><button class="primary-btn" data-open-modal="patientModal" data-permission="managePatients">+ Register new patient</button></div><div class="hero-illustration" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="heart">♥</div><div class="plus-card">+</div></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon mint">♙</div><div><span>Total Patients</span><b id="patientCount">1,284</b><small class="up">↑ 8.2% this month</small></div></article>
+          <article class="stat-card"><div class="stat-icon blue">◷</div><div><span>Today's Appointments</span><b id="appointmentCount">18</b><small>6 completed so far</small></div></article>
+          <article class="stat-card"><div class="stat-icon peach">♧</div><div><span>Available Doctors</span><b>12</b><small>Across 5 specialties</small></div></article>
+          <article class="stat-card"><div class="stat-icon lavender">♥</div><div><span>Pending Reports</span><b>7</b><small class="warning">Need review today</small></div></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel appointments-panel"><div class="panel-heading"><div><h3>Today's appointments</h3><p>Monday, 27 October 2026</p></div><button class="text-btn" data-view-target="appointments">View all →</button></div><div class="table-wrap"><table><thead><tr><th>TIME</th><th>PATIENT</th><th>DOCTOR</th><th>STATUS</th></tr></thead><tbody id="appointmentTable"><tr><td>09:30 AM</td><td><b>Arjun Mehta</b><small>OP-1042</small></td><td>Dr. Kavya Rao</td><td><span class="badge confirmed">Confirmed</span></td></tr><tr><td>10:15 AM</td><td><b>Nisha Verma</b><small>OP-1043</small></td><td>Dr. R. Iyer</td><td><span class="badge waiting">Waiting</span></td></tr><tr><td>11:00 AM</td><td><b>Rahul Sinha</b><small>OP-1044</small></td><td>Dr. Kavya Rao</td><td><span class="badge confirmed">Confirmed</span></td></tr><tr><td>12:30 PM</td><td><b>Priya Nair</b><small>OP-1045</small></td><td>Dr. S. Thomas</td><td><span class="badge pending">Pending</span></td></tr></tbody></table></div></section>
+          <section class="panel activity-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p>Live system log</p></div><button class="more-btn">•••</button></div><div class="activity-list"><div class="activity"><span class="activity-icon green">+</span><div><b>New patient registered</b><p>Arjun Mehta • 10 mins ago</p></div></div><div class="activity"><span class="activity-icon blue">▤</span><div><b>Medical record updated</b><p>Nisha Verma • 25 mins ago</p></div></div><div class="activity"><span class="activity-icon purple">◷</span><div><b>Appointment rescheduled</b><p>Rahul Sinha • 1 hour ago</p></div></div><div class="activity"><span class="activity-icon amber">♜</span><div><b>Security check completed</b><p>All access rules verified • 2 hours ago</p></div></div></div></section>
+        </div>
+      </section>
+
+      <section class="view" id="patients">
+        <div class="section-bar"><div><h2>Patient directory</h2><p>Search and manage registered patient profiles.</p></div><button class="primary-btn" data-open-modal="patientModal" data-permission="managePatients">+ Add patient</button></div>
+        <div class="panel directory-panel"><div class="search-row"><label class="search"><span>⌕</span><input id="patientSearch" placeholder="Search by name or patient ID" /></label><button class="filter-btn">☷ Filters</button></div><div class="table-wrap"><table><thead><tr><th>PATIENT</th><th>PATIENT ID</th><th>AGE / GENDER</th><th>LAST VISIT</th><th>STATUS</th><th></th></tr></thead><tbody id="patientTable"><tr><td><b>Arjun Mehta</b><small>arjun.mehta@example.com</small></td><td>OP-1042</td><td>32 / Male</td><td>24 Oct 2026</td><td><span class="badge confirmed">Active</span></td><td><button class="row-btn">View</button></td></tr><tr><td><b>Nisha Verma</b><small>nisha.verma@example.com</small></td><td>OP-1043</td><td>28 / Female</td><td>27 Oct 2026</td><td><span class="badge confirmed">Active</span></td><td><button class="row-btn">View</button></td></tr><tr><td><b>Rahul Sinha</b><small>rahul.sinha@example.com</small></td><td>OP-1044</td><td>45 / Male</td><td>20 Oct 2026</td><td><span class="badge confirmed">Active</span></td><td><button class="row-btn">View</button></td></tr><tr><td><b>Priya Nair</b><small>priya.nair@example.com</small></td><td>OP-1045</td><td>36 / Female</td><td>18 Oct 2026</td><td><span class="badge waiting">Follow-up</span></td><td><button class="row-btn">View</button></td></tr></tbody></table></div></div>
+      </section>
+
+      <section class="view" id="appointments"><div class="section-bar"><div><h2>Appointments</h2><p>Manage today's consultation queue.</p></div><button class="primary-btn" data-open-modal="appointmentModal" data-permission="manageAppointments">+ Book appointment</button></div><div class="panel schedule-card"><div class="schedule-date"><button>‹</button><div><b>Monday</b><span>27 October 2026</span></div><button>›</button></div><div class="schedule-list" id="scheduleList"></div></div></section>
+
+      <section class="view" id="records"><div class="section-bar"><div><h2>Medical records</h2><p>Secure record access with role verification.</p></div><button class="secondary-btn" id="recordAccessButton">♜ Verify access</button></div><div class="record-notice"><span>♜</span><div><b>Protected health information</b><p id="recordNoticeText">Records are shown only after a role check. This demonstrates role-based access control (RBAC).</p></div></div><div class="panel"><div class="panel-heading"><div><h3>Recent record updates</h3><p>Verified staff activity</p></div><button class="text-btn" id="addNoteButton">+ Add clinical note</button></div><div class="activity-list" id="recordList"><div class="activity"><span class="activity-icon blue">▤</span><div><b>Blood pressure report added</b><p>Arjun Mehta • Dr. Kavya Rao</p></div><span class="badge confirmed">Verified</span></div><div class="activity"><span class="activity-icon blue">▤</span><div><b>Prescription updated</b><p>Nisha Verma • Dr. R. Iyer</p></div><span class="badge confirmed">Verified</span></div></div></div></section>
+
+      <section class="view" id="security"><div class="section-bar"><div><h2>Security centre</h2><p>Simple controls that are easy to explain in a presentation.</p></div><span class="secure-label"><span class="pulse-dot"></span> Protection active</span></div><div class="security-grid"><article class="security-card"><div class="security-card-icon">♜</div><h3>Role-based access</h3><p>Staff only see functions permitted for their role. Receptionists cannot edit clinical records.</p><span class="implemented">✓ Enabled</span></article><article class="security-card"><div class="security-card-icon">#</div><h3>Password hashing</h3><p>The C++ sample stores a one-way password hash, never plain-text passwords.</p><span class="implemented">✓ In backend code</span></article><article class="security-card"><div class="security-card-icon">✓</div><h3>Input validation</h3><p>Patient data is checked for valid lengths and safe characters before it is accepted.</p><span class="implemented">✓ Enabled</span></article><article class="security-card"><div class="security-card-icon">◉</div><h3>Audit trail</h3><p>Important actions create a timestamped log entry to help trace access.</p><span class="implemented">✓ Enabled</span></article></div><div class="panel audit-panel"><div class="panel-heading"><div><h3>Security audit log</h3><p>Recorded access events</p></div><button class="text-btn" id="refreshAudit">↻ Refresh</button></div><div id="auditLog" class="audit-log"><p><time>10:32:18</time><span class="ok">ALLOW</span> Admin Staff opened patient directory</p><p><time>10:24:07</time><span class="ok">ALLOW</span> Doctor updated OP-1043 record</p><p><time>10:21:55</time><span class="denied">DENY</span> Reception role tried to edit clinical record</p></div></div></section>
+    </main>
+  </div>
+
+  <div class="modal" id="patientModal" aria-hidden="true"><div class="modal-card"><button class="close-modal" aria-label="Close">×</button><span class="modal-icon">+</span><h2>Register patient</h2><p>Patient information is stored only for this session.</p><form id="patientForm"><label>Full name<input name="name" required minlength="2" maxlength="40" placeholder="e.g. Sana Kapoor" /></label><div class="form-grid"><label>Age<input name="age" type="number" min="1" max="120" required placeholder="28" /></label><label>Gender<select name="gender" required><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option></select></label></div><label>Email<input name="email" type="email" required placeholder="name@example.com" /></label><p class="form-security">♜ Input validation is enabled.</p><button class="primary-btn full" type="submit">Save patient</button></form></div></div>
+  <div class="modal" id="appointmentModal" aria-hidden="true"><div class="modal-card"><button class="close-modal" aria-label="Close">×</button><span class="modal-icon">◷</span><h2>Book appointment</h2><p>Reserve a consultation slot.</p><form id="appointmentForm"><label>Patient name<input name="patient" required minlength="2" placeholder="Patient name" /></label><label>Doctor<select name="doctor" required><option value="">Choose doctor</option><option>Dr. Kavya Rao</option><option>Dr. R. Iyer</option><option>Dr. S. Thomas</option></select></label><label>Time<select name="time" required><option value="">Choose a time</option><option>01:15 PM</option><option>02:00 PM</option><option>03:30 PM</option></select></label><button class="primary-btn full" type="submit">Confirm appointment</button></form></div></div>
+  <div class="modal" id="noteModal" aria-hidden="true"><div class="modal-card"><button class="close-modal" aria-label="Close">×</button><span class="modal-icon">▤</span><h2>Add clinical note</h2><p>Only doctors and administrators can save clinical notes.</p><form id="noteForm"><label>Patient<select name="patient" required><option>Arjun Mehta</option><option>Nisha Verma</option><option>Rahul Sinha</option><option>Priya Nair</option></select></label><label>Clinical note<textarea name="note" minlength="5" maxlength="160" required placeholder="e.g. Follow-up advised after 2 weeks."></textarea></label><button class="primary-btn full" type="submit">Save clinical note</button></form></div></div>
+  <section class="signin-screen" id="signinScreen" aria-label="Sign in">
+    <div class="signin-card">
+      <a class="signin-brand" href="#"><span class="brand-mark">✚</span><span>Medi<span>Shield</span></span></a>
+      <p class="signin-kicker">SECURE STAFF PORTAL</p>
+      <h1>Welcome back</h1>
+      <p>Sign in with your staff ID to access your workspace.</p>
+      <form id="signinForm">
+        <label>Staff ID<input id="staffId" autocomplete="username" required placeholder="Enter your staff ID" /></label>
+        <label>Password<input id="staffPassword" type="password" autocomplete="current-password" required placeholder="Enter your password" /></label>
+        <p class="signin-error" id="signinError" role="alert"></p>
+        <button class="signin-button" type="submit">Sign in securely →</button>
+      </form>
+      <p class="signin-footer">Protected access • Role-based permissions • Audit logging</p>
+    </div>
+  </section>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
